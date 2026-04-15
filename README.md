@@ -1,6 +1,7 @@
-## AgentRAG: Multi-hop Document Intelligence System
+## AgentRAG: Multi-hop Document Intelligence System 
 
 AgentRAG is a high-performance agentic RAG (Retrieval-Augmented Generation) pipeline built to handle complex, cross-document queries. Utilizing a sophisticated graph-based orchestration, the system can decompose multi-hop questions, perform hybrid retrieval, and synthesize factually accurate responses with precise citations.
+
 ------------------------------
 ## Core Features
 
@@ -89,6 +90,7 @@ Response Example:
 
 {
   "answer": "The architecture of Inception Net differs from traditional CNNs in several ways. Traditional CNNs typically consist of convolutional layers paired with ReLUs, and are characterized by locality of pixel dependencies and stationarity of statistics",
+  
   "sources": ["Inception_Net.pdf (p.4)", "CNN_Overview.pdf (p.12)"],
   "confidence": 0.94,
   "was_multihop": true
