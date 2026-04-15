@@ -35,8 +35,10 @@ The system has been benchmarked using the RAGAS framework on a technical knowled
 | Context Recall | 0.89 |
 
 ------------------------------
-Project Structure
-text
+Bhai, ye lo bilkul sahi formatted structure aur installation guide. Isay aap apni README.md mein paste kar sakte hain. Maine saaray emojis hata diye hain aur markdown blocks sahi kar diye hain taake GitHub par tree bilkul saaf nazar aaye.
+------------------------------
+## Project Structure
+
 agentrag/
 ├── data/
 │   └── documents/          # Raw PDF repository
@@ -50,41 +52,41 @@ agentrag/
 ├── Dockerfile
 ├── requirements.txt
 └── README.md
-Use code with caution.
-Installation and Setup
-1. Clone the Repository
-bash
+
+------------------------------
+## Installation and Setup## 1. Clone the Repository
+
 git clone https://github.com
 cd AgentRAG
-Use code with caution.
-2. Environment Configuration
+
+## 2. Environment Configuration
 Create a .env file in the root directory and add the following:
-text
+
 GROQ_API_KEY=your_groq_api_key
 JINA_API_KEY=your_jina_api_key
 QDRANT_URL=http://localhost:6333
 QDRANT_COLLECTION=agentrag_docs
-Use code with caution.
-3. Deployment via Docker
-bash
+
+## 3. Deployment via Docker
+
 docker-compose up --build
-Use code with caution.
-4. Document Ingestion
+
+## 4. Document Ingestion
 In a new terminal, run the ingestion script to process and index your documents:
-bash
+
 python ingest.py
-Use code with caution.
-API Reference
-Query Endpoint
+
+------------------------------
+## API Reference## Query Endpoint
 POST /query
 Request Body:
-json
+
 {
   "query": "Compare the architecture of Inception Net with traditional CNNs."
 }
-Use code with caution.
+
 Response Example:
-json
+
 {
   "answer": "The architecture of Inception Net differs from traditional CNNs in several ways. While traditional CNNs typically use stacked convolutional layers, Inception Net utilizes parallel 'Inception modules' that capture features at multiple scales simultaneously.",
   "sources": [
@@ -94,9 +96,12 @@ json
   "confidence": 0.94,
   "was_multihop": true
 }
-Use code with caution.
-Evaluation
+
+------------------------------
+## Evaluation
 To execute the automated RAGAS evaluation pipeline and measure system performance:
-bash
+
 python -m src.evaluation.ragas_eval
-Use code with caution.
+
+
+
