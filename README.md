@@ -1,107 +1,140 @@
-## AgentRAG: Multi-hop Document Intelligence System 
+# AgentRAG: Multi-hop Document Intelligence System
 
-AgentRAG is a high-performance agentic RAG (Retrieval-Augmented Generation) pipeline built to handle complex, cross-document queries. Utilizing a sophisticated graph-based orchestration, the system can decompose multi-hop questions, perform hybrid retrieval, and synthesize factually accurate responses with precise citations.
+AgentRAG is a high-performance agentic RAG (Retrieval-Augmented Generation) pipeline designed to handle complex, cross-document queries. It leverages graph-based orchestration to decompose multi-hop questions, perform hybrid retrieval, and generate accurate, citation-backed responses.
 
-------------------------------
+---
+
 ## Core Features
 
-* Agentic Orchestration: Powered by LangGraph, the system employs conditional routing to choose between single-hop and multi-hop retrieval strategies based on query intent.
-* Hybrid Retrieval Pipeline: Integrates a dual-search mechanism combining BM25 sparse search and BGE-small dense embeddings for maximum recall.
-* Neural Reranking: Leverages Jina AI Reranker to re-score document chunks, ensuring the top-tier context is provided to the LLM.
-* Multi-hop Reasoning: Automatically breaks down complex queries into atomic sub-questions, retrieves intermediate findings, and synthesizes a final unified answer.
-* Self-Reflection Logic: The agent autonomously evaluates the quality of retrieved context and triggers re-retrieval if the information is insufficient.
-* Automated Evaluation: Fully integrated with the RAGAS framework to measure Faithfulness, Precision, and Recall.
-* Production Architecture: Served via FastAPI and containerized with Docker for seamless deployment.
+* **Agentic Orchestration**: Powered by LangGraph with conditional routing for single-hop vs multi-hop query handling
+* **Hybrid Retrieval Pipeline**: Combines BM25 sparse search with dense embeddings (BGE-small)
+* **Neural Reranking**: Uses Jina AI Reranker to refine retrieved context
+* **Multi-hop Reasoning**: Decomposes complex queries into sub-questions and synthesizes final answers
+* **Self-Reflection Logic**: Automatically re-retrieves context when information is insufficient
+* **Automated Evaluation**: Integrated with RAGAS for Faithfulness, Precision, and Recall
+* **Production Ready**: FastAPI backend with Docker-based deployment
 
-------------------------------
+---
+
 ## Technology Stack
 
-* Orchestration: LangChain, LangGraph
-* LLM: Groq (Llama 3.3 70B)
-* Vector Database: Qdrant (Dockerized)
-* Embeddings: FastEmbed (BAAI/bge-small-en-v1.5)
-* API Layer: FastAPI, Uvicorn
-* Evaluation: RAGAS, HuggingFace Datasets
-* Infrastructure: Docker, Docker-compose
+* **Orchestration**: LangChain, LangGraph
+* **LLM**: Groq (Llama 3.3 70B)
+* **Vector Database**: Qdrant
+* **Embeddings**: FastEmbed (BAAI/bge-small-en-v1.5)
+* **API Layer**: FastAPI, Uvicorn
+* **Evaluation**: RAGAS, HuggingFace Datasets
+* **Infrastructure**: Docker, Docker Compose
 
-------------------------------
+---
+
 ## Performance Metrics
-The system has been benchmarked using the RAGAS framework on a technical knowledge base:
 
-| Metric | Score |
-|---|---|
-| Context Precision | 0.94 |
-| Faithfulness | 0.91 |
-| Context Recall | 0.89 |
+Benchmarked using the RAGAS framework on a technical knowledge base:
 
-------------------------------
-Bhai, ye lo bilkul sahi formatted structure aur installation guide. Isay aap apni README.md mein paste kar sakte hain. Maine saaray emojis hata diye hain aur markdown blocks sahi kar diye hain taake GitHub par tree bilkul saaf nazar aaye.
-------------------------------
+| Metric            | Score |
+| ----------------- | ----- |
+| Context Precision | 0.94  |
+| Faithfulness      | 0.91  |
+| Context Recall    | 0.89  |
+
+---
+
 ## Project Structure
 
+```
 agentrag/
 ├── data/
-│   └── documents/          # Raw PDF repository
+│   └── documents/
 ├── src/
-│   ├── ingestion/          # Loader, Chunker, and Embedder logic
-│   ├── retrieval/          # Hybrid search and Jina reranker
-│   ├── agent/              # LangGraph state and graph orchestration
-│   ├── evaluation/         # RAGAS evaluation suite
-│   └── api/                # FastAPI backend implementation
+│   ├── ingestion/
+│   ├── retrieval/
+│   ├── agent/
+│   ├── evaluation/
+│   └── api/
 ├── docker-compose.yml
 ├── Dockerfile
 ├── requirements.txt
 └── README.md
+```
 
-------------------------------
-## Installation and Setup## 1. Clone the Repository
+---
 
-git clone https://github.com
+## Installation and Setup
+
+### 1. Clone Repository
+
+```bash
+git clone https://github.com/your-username/AgentRAG.git
 cd AgentRAG
+```
 
-## 2. Environment Configuration
-Create a .env file in the root directory and add the following:
+### 2. Configure Environment
 
+Create `.env` file:
+
+```env
 GROQ_API_KEY=your_groq_api_key
 JINA_API_KEY=your_jina_api_key
 QDRANT_URL=http://localhost:6333
 QDRANT_COLLECTION=agentrag_docs
+```
 
-## 3. Deployment via Docker
+### 3. Run with Docker
 
+```bash
 docker-compose up --build
+```
 
-## 4. Document Ingestion
-In a new terminal, run the ingestion script to process and index your documents:
+### 4. Ingest Documents
 
+```bash
 python ingest.py
+```
 
-------------------------------
-## API Reference## Query Endpoint
-POST /query
-Request Body:
+---
 
+## API Reference
+
+### POST `/query`
+
+#### Request
+
+```json
 {
   "query": "Compare the architecture of Inception Net with traditional CNNs."
 }
+```
 
-Response Example:
+#### Response
 
+```json
 {
-  "answer": "The architecture of Inception Net differs from traditional CNNs in several ways. While traditional CNNs typically use stacked convolutional layers, Inception Net utilizes parallel 'Inception modules' that capture features at multiple scales simultaneously.",
-  "sources": [
-    "Inception_Net.pdf (p.4)",
-    "CNN_Overview.pdf (p.12)"
-  ],
+  "answer": "...",
+  "sources": ["doc.pdf (p.4)"],
   "confidence": 0.94,
   "was_multihop": true
 }
+```
 
-------------------------------
+---
+
 ## Evaluation
-To execute the automated RAGAS evaluation pipeline and measure system performance:
 
+```bash
 python -m src.evaluation.ragas_eval
+```
 
+---
 
+## Notes
 
+* Ensure Docker is running before deployment
+* Configure `.env` correctly
+* Add documents to `data/documents/` before ingestion
+
+---
+
+## License
+
+MIT License
