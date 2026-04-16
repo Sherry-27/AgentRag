@@ -18,8 +18,7 @@ retriever = HybridRetriever(top_k=10)
 reranker = JinaReranker(top_n=5)
 
 
-# ── NODE 1: Query Analysis ───────────────────────────────────────
-# UPGRADE vs Hammad: Confidence scoring + better routing logic
+    # ── NODE 1: Query Analysis ————
 def analyze_query(state: AgentState) -> AgentState:
     """
     Agent decides:
@@ -92,7 +91,6 @@ def single_hop_retrieve(state: AgentState) -> AgentState:
 
 
 # ── NODE 3: Multi-hop Retrieval ──────────────────────────────────
-# UPGRADE vs Hammad: This is the key differentiator
 def multi_hop_retrieve(state: AgentState) -> AgentState:
     """
     Multi-hop: retrieve for each sub-query separately,
@@ -144,7 +142,6 @@ Answer:"""
 
 
 # ── NODE 4: Self-Reflection ──────────────────────────────────────
-# UPGRADE vs Hammad: Hammad has NO self-reflection
 def self_reflect(state: AgentState) -> AgentState:
     """
     Agent checks if retrieved docs actually answer the query.
