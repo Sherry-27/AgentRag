@@ -1,30 +1,30 @@
 # AgentRAG: Multi-hop Document Intelligence System
 
-AgentRAG is a high-performance agentic RAG (Retrieval-Augmented Generation) pipeline designed to handle complex, cross-document queries. It leverages graph-based orchestration to decompose multi-hop questions, perform hybrid retrieval, and generate accurate, citation-backed responses.
+AgentRAG is an agentic RAG (Retrieval-Augmented Generation) system designed to handle complex, cross-document queries. It leverages graph-based orchestration to decompose multi-hop questions, perform hybrid retrieval, and generate accurate, citation-backed responses.
 
 ---
 
 ## Core Features
 
-* **Agentic Orchestration**: Powered by LangGraph with conditional routing for single-hop vs multi-hop query handling
-* **Hybrid Retrieval Pipeline**: Combines BM25 sparse search with dense embeddings (BGE-small)
-* **Neural Reranking**: Uses Jina AI Reranker to refine retrieved context
-* **Multi-hop Reasoning**: Decomposes complex queries into sub-questions and synthesizes final answers
-* **Self-Reflection Logic**: Automatically re-retrieves context when information is insufficient
-* **Automated Evaluation**: Integrated with RAGAS for Faithfulness, Precision, and Recall
-* **Production Ready**: FastAPI backend with Docker-based deployment
+* **Agentic Orchestration**: Powered by LangGraph with conditional routing for single-hop vs multi-hop query handling  
+* **Hybrid Retrieval Pipeline**: Combines BM25 sparse search with dense embeddings (BGE-small)  
+* **Neural Reranking**: Uses Jina AI Reranker to refine retrieved context  
+* **Multi-hop Reasoning**: Decomposes complex queries into sub-questions and synthesizes final answers  
+* **Self-Reflection Logic**: Automatically re-retrieves context when information is insufficient  
+* **Automated Evaluation**: Integrated with RAGAS for Faithfulness, Precision, and Recall  
+* **Production Ready**: FastAPI backend with Docker-based deployment  
 
 ---
 
 ## Technology Stack
 
-* **Orchestration**: LangChain, LangGraph
-* **LLM**: Groq (Llama 3.3 70B)
-* **Vector Database**: Qdrant
-* **Embeddings**: FastEmbed (BAAI/bge-small-en-v1.5)
-* **API Layer**: FastAPI, Uvicorn
-* **Evaluation**: RAGAS, HuggingFace Datasets
-* **Infrastructure**: Docker, Docker Compose
+* **Orchestration**: LangChain, LangGraph  
+* **LLM**: Llama 3 (70B via Groq)  
+* **Vector Database**: Qdrant  
+* **Embeddings**: FastEmbed (BAAI/bge-small-en-v1.5)  
+* **API Layer**: FastAPI, Uvicorn  
+* **Evaluation**: RAGAS, HuggingFace Datasets  
+* **Infrastructure**: Docker, Docker Compose  
 
 ---
 
@@ -33,10 +33,10 @@ AgentRAG is a high-performance agentic RAG (Retrieval-Augmented Generation) pipe
 Benchmarked using the RAGAS framework on a technical knowledge base:
 
 | Metric            | Score |
-| ----------------- | ----- |
-| Context Precision | 0.94  |
-| Faithfulness      | 0.91  |
-| Context Recall    | 0.89  |
+|------------------|------|
+| Context Precision | 0.94 |
+| Faithfulness      | 0.91 |
+| Context Recall    | 0.89 |
 
 ---
 
@@ -138,3 +138,4 @@ python -m src.evaluation.ragas_eval
 ## License
 
 MIT License
+
